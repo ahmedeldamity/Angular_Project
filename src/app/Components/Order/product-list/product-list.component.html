@@ -1,0 +1,80 @@
+<!-- <table class=" mt-2">
+  <thead>
+    <tr class="table-primary">
+      <th>ID</th>
+      <th>Name</th>
+      <th>Image</th>
+      <th>Av. Quantity</th>
+      <th>Price</th>
+     </tr>
+  </thead>
+  <tbody>
+      <tr *ngFor="let product of prdList" [style.background-color]="product.quantity!=0?'red':'black'" >
+        <td>{{product?.id}}</td>
+        <td>{{product?.name}}</td>
+        <td><img src="{{product?.imageURL}}" alt="Product Image"></td>
+        <td>{{product?.quantity}}</td>
+        <td>{{product?.price}}</td>
+        <td><input #itemsCount type="number" class="form-control"></td>
+        <td><button (click)="buying(product.price, itemsCount.value)">Buy</button></td>
+      </tr>
+  </tbody>
+</table>
+
+<h3>{{orderTotalPrice}}</h3> -->
+
+<!-- ----------------------------------------------------------------------------------- -->
+
+<!-- <label class="form-label">Category</label>
+<select class="form-control" name="Categories" ت ت>
+  <option *ngFor="let cat of catList" value="{{cat.id}}">{{cat.name}}</option>
+</select>
+<div>
+  Category Id: {{selectedCategoryId}}
+  <br>
+  <button class="btn btn-primary" (click)="changeCategory()">Change Category</button>
+</div> -->
+
+<!-- <div class="mb-3">
+  <label class="form-label">Category</label>
+  <select class="form-control" name="Categories" [(ngModel)]="selectedCategoryId">
+    <option *ngFor="let cat of catList" value="{{cat.id}}">{{cat.name}}</option>
+  </select>
+</div>
+<div>
+  Category Id: {{selectedCategoryId}}
+  <br>
+  <button type="button" class="btn btn-primary" (click)="changeCategory()">Change Category</button>
+</div>
+<hr>
+<table class="table table-hover mt-2">
+  <thead>
+    <tr class="table-primary">
+      <th>ID</th>
+      <th>Name</th>
+      <th>Image</th>
+      <th>Av. Quantity</th>
+      <th>Price</th>
+      <th>Count</th>
+      <th>Buy</th>
+     </tr>
+  </thead>
+  <tbody> -->
+    <!-- <tr *ngFor="let prd of prdList; let i = index; trackBy:profuctTrackByFun;" class="table-info" [class.table-warning]="prd.quantity==0" [class.d-none]="prd.categoryID!=selectedCategoryId" [style.background-color]="(prd.quantity == 0) ? 'red' : 'black' "> -->
+    <!-- <ng-container *ngFor="let prd of prdList; let i = index;">
+      <tr *ngIf="prd.quantity!=0" class="table-info" >
+        <td>{{i+1}}</td>
+        <td>{{prd?.name}}</td>
+        <td><img src="{{prd?.imageURL}}" alt=""></td>
+        <td>{{prd?.quantity}}</td>
+        <td>{{prd?.price}}</td>
+        <td><input #itemsCount type="number" class="form-control"></td>
+        <td><button type="button" class="btn btn-primary" (click)="buy(prd.price, itemsCount.value)">Buy</button></td>
+      </tr>
+    </ng-container>
+  </tbody>
+</table>
+
+<hr>
+
+<h3>Order Total Price: {{orderTotalPrice}}</h3> -->
