@@ -5,7 +5,8 @@
       <th>Name</th>
       <th>Image</th>
       <th>Av. Quantity</th>
-      <th>Price</th>
+      <th>Price in USD</th>
+      <th>Price in EGP</th>
       <th>Count</th>
       <th>Buy</th>
      </tr>
@@ -84,16 +85,18 @@
       <tr *ngFor="let product of prdList; let i = index;" [class]="product.quantity!=0 ? setClassInfo: setClassWarning">
         <td>{{i+1}}</td>
         <td>{{product?.name}}</td>
-        <td><img src="{{product?.imageURL}}" alt="Product Image"></td>
+        <td><img LightBox mouseOverColor="green" mouseOutColor="yellow" [src]="product?.imageURL" alt="Product Image"></td>
         <td>{{product?.quantity}}</td>
-        <td>{{product?.price}}</td>
+        <td>{{product?.price | currency: 'EUR': 'code'}}</td>
+        <td>{{product?.price  | USDtoEGP: 10 | currency: 'EGP': 'code'}}</td>
         <td><input #itemsCount type="number" class="form-control"></td>
         <td><button (click)="buying(product.price, itemsCount.value)">Buy</button></td>
       </tr>
   </tbody>
 </table>
 
-<h3>The total price is: {{orderTotalPrice}}</h3>
+<h3>The total price is: {{orderTotalPrice | currency: 'EUR': 'code'}}</h3>
+<h6>Today's Date: {{orderDate | date: 'longDate'}}</h6>
 
 <!-- ----------------------------------------------------------------------------------- -->
 
