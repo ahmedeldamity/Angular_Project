@@ -15,6 +15,19 @@ export class ProductListComponent {
   orderTotalPrice:number = 0;
   selectedCategoryId:number = 0;
 
+  setClassToButton:string = "btn btn-primary";
+  setClassInfo:string= "table-info";
+  setClassWarning:string= "table-warning";
+
+  blueColor:string = "blue;";
+
+  yellowColor:string = "yellow;";
+
+
+  setInfoBackgroundColor:string = "background-color: blue;";
+
+  setWarningBackgroundColor:string = "background-color: yellow;";
+
   buying(prdPrice:number, itemsCount:any)
   {
     this.orderTotalPrice = prdPrice * parseInt(itemsCount)
@@ -30,7 +43,7 @@ export class ProductListComponent {
     this.selectedCategoryId = 1;
   }
 
-  profuctTrackByFun(index:number, prd:IProduct):number
+  productsTrackByFun(index:number, prd:IProduct):number
   {
     return prd.id;
   }
