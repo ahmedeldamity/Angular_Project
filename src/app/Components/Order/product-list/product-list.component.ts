@@ -1,20 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { IProduct } from '../../../Models/iproduct';
-import { ICategory } from '../../../Models/icategory';
-
 
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css'
 })
-export class ProductListComponent {
+export class ProductListComponent implements OnChanges {
   clickMessage:any;
   prdList:IProduct[];
-  catList:ICategory[];
+  productListFilteration:IProduct[]=[];
+  @Input() reseivedCategoryId:number = 0;
   orderTotalPrice:number = 0;
-  selectedCategoryId:number = 0;
-
   orderDate:Date = new Date();
 
   setClassToButton:string = "btn btn-primary";
@@ -22,49 +19,14 @@ export class ProductListComponent {
   setClassWarning:string= "table-warning";
 
   blueColor:string = "blue;";
-
   yellowColor:string = "yellow;";
 
-
   setInfoBackgroundColor:string = "background-color: blue;";
-
   setWarningBackgroundColor:string = "background-color: yellow;";
 
-  buying(prdPrice:number, itemsCount:any)
+  constructor()
   {
-    this.orderTotalPrice = prdPrice * parseInt(itemsCount)
-  }
 
-  buy(prdPrice:number, itemsCount:any)
-  {
-    this.orderTotalPrice = prdPrice * parseInt(itemsCount)
-  }
-
-  changeCategory()
-  {
-    this.selectedCategoryId = 1;
-  }
-
-  productsTrackByFun(index:number, prd:IProduct):number
-  {
-    return prd.id;
-  }
-
-  constructor() {
-    this.catList = [
-      {
-        id:1,
-        name:'Laptop'
-      },
-      {
-        id:2,
-        name:'Tablets'
-      },
-      {
-        id:3,
-        name:'Mobiles'
-      }
-    ];
     this.prdList = [
       {
         id:100,
@@ -115,5 +77,27 @@ export class ProductListComponent {
         categoryID:3
       },
     ];
+  }
+
+  ngOnChanges(): void {
+    this.productsFilteration();
+  }
+
+  buying(prdPrice:number, itemsCount:any)
+  {
+    this.orderTotalPrice = prdPrice * parseInt(itemsCount)
+  }
+
+  productsTrackByFun(index:number, prd:IProduct):number
+  {
+    return prd.id;
+  }
+
+  private productsFilteration()
+  {
+    if(this.reseivedCategoryId == 0)
+      this.productListFilteration = this.prdList;
+    else
+      this.productListFilteration = this.prdList.filter(P => P.categoryID == this.reseivedCategoryId);
   }
 }

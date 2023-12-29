@@ -10,6 +10,8 @@ import { SidebarComponent } from './Components/sidebar/sidebar.component';
 import { ProductListComponent } from './Components/Order/product-list/product-list.component';
 import { LightBoxDirective } from './Directives/light-box.directive';
 import { USDtoEGPPipe } from './Pipes/usdto-egp.pipe';
+import { FormsModule } from '@angular/forms';
+import { OrderMasterComponent } from './Components/Order/order-master/order-master.component';
 
 @NgModule({
   declarations: [
@@ -21,10 +23,12 @@ import { USDtoEGPPipe } from './Pipes/usdto-egp.pipe';
     ProductListComponent,
     LightBoxDirective,
     USDtoEGPPipe,
+    OrderMasterComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [
     provideClientHydration()
