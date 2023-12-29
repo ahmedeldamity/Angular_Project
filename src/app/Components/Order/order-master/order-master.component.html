@@ -10,5 +10,9 @@
 <div style="padding: 5px; background-color: #eee;">
   <app-product-list  (totalPriceChange)="onTotalPriceChange($event)" [reseivedCategoryId]="selectedCategoryId"></app-product-list>
 </div>
+<div>
+  <h3>Enter Your Name: </h3>
+  <input #clientName type="text" class="form-control">
+</div>
 <h3>The total price is: {{receivedTotalPrice | currency: 'EUR'}}</h3>
 <h6>Today's Date: {{orderDate | date: 'longDate'}}</h6>
