@@ -8,5 +8,7 @@
 </div>
 <hr>
 <div style="padding: 5px; background-color: #eee;">
-  <app-product-list [reseivedCategoryId]="selectedCategoryId"></app-product-list>
+  <app-product-list  (totalPriceChange)="onTotalPriceChange($event)" [reseivedCategoryId]="selectedCategoryId"></app-product-list>
 </div>
+<h3>The total price is: {{receivedTotalPrice | currency: 'EUR'}}</h3>
+<h6>Today's Date: {{orderDate | date: 'longDate'}}</h6>

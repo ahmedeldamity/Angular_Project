@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output} from '@angular/core';
 import { IProduct } from '../../../Models/iproduct';
 
 @Component({
@@ -11,6 +11,7 @@ export class ProductListComponent implements OnChanges {
   prdList:IProduct[];
   productListFilteration:IProduct[]=[];
   @Input() reseivedCategoryId:number = 0;
+  @Output() totalPriceChange: EventEmitter<number>;
   orderTotalPrice:number = 0;
   orderDate:Date = new Date();
 
@@ -26,6 +27,7 @@ export class ProductListComponent implements OnChanges {
 
   constructor()
   {
+    this.totalPriceChange = new EventEmitter<number>();
 
     this.prdList = [
       {
@@ -85,7 +87,8 @@ export class ProductListComponent implements OnChanges {
 
   buying(prdPrice:number, itemsCount:any)
   {
-    this.orderTotalPrice = prdPrice * parseInt(itemsCount)
+    this.orderTotalPrice += prdPrice * parseInt(itemsCount);
+    this.totalPriceChange.emit(this.orderTotalPrice);
   }
 
   productsTrackByFun(index:number, prd:IProduct):number
