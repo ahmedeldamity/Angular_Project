@@ -85,7 +85,7 @@
       <tr *ngFor="let product of prdList; let i = index;" [class]="product.quantity!=0 ? setClassInfo: setClassWarning">
         <td>{{i+1}}</td>
         <td>{{product?.name}}</td>
-        <td><img LightBox mouseOverColor="green" mouseOutColor="yellow" [src]="product?.imageURL" alt="Product Image"></td>
+        <td><img LightBox mouseOverColor="green" mouseOutColor="yellow" defaultColor="black" [src]="product?.imageURL" alt="Product Image"></td>
         <td>{{product?.quantity}}</td>
         <td>{{product?.price | currency: 'EUR': 'code'}}</td>
         <td>{{product?.price  | USDtoEGP: 10 | currency: 'EGP': 'code'}}</td>
