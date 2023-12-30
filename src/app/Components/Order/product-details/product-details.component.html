@@ -1,0 +1,16 @@
+<div class="card m-2" style="width: 18rem;">
+  <img [src]="product?.imageURL" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{product?.name}}</h5>
+    <div class="card-text">
+      <div>Price: {{product?.price}}</div>
+      <div>Quantity: {{product?.quantity}}</div>
+    </div>
+    <div class="btn-group" role="group" aria-label="Basic example">
+      <button [disabled]="currenetProductId == productIdList[0]" class="btn btn-success mt-3" (click)="previousProduct()">Previous</button>
+      <button class="btn btn-warning mt-3" (click)="goBack()">Go Back</button>
+      <button [disabled]="currenetProductId == productIdList[productIdList.length-1]" class="btn btn-success mt-3" (click)="nextProduct()">Next</button>
+    </div>
+    <button class="btn btn-secondary mt-3" (click)="goBack()">Go Back</button>
+  </div>
+</div>

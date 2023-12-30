@@ -83,4 +83,8 @@ export class StaticProductsService {
   {
     this.productList.push(product);
   }
+  getProductsId(): number[]
+  {
+    return this.productList.map(p => p.id);
+  }
 }

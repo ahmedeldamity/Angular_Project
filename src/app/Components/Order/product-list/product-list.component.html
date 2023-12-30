@@ -8,7 +8,8 @@
       <th>Price in USD</th>
       <th>Price in EGP</th>
       <th>Count</th>
-      <th>Buy</th>
+      <th>Details</th>
+      <th>Add</th>
      </tr>
   </thead>
   <tbody>
@@ -20,7 +21,9 @@
         <td>{{product?.price | currency: 'EUR': 'code'}}</td>
         <td>{{product?.price  | USDtoEGP: 10 | currency: 'EGP': 'code'}}</td>
         <td><input #itemsCount type="number" class="form-control"></td>
-        <td><button (click)="buying(product.price, itemsCount.value)">Buy</button></td>
+        <!-- <td><button (click)="openProductDetails(product.id)">Details</button></td> -->
+        <td><a class="btn btn-success" [routerLink]="['/Products', product.id]">Details</a></td>
+        <td><button class="btn btn-success" (click)="buying(product.price, itemsCount.value)">Add to cart</button></td>
       </tr>
   </tbody>
 </table>

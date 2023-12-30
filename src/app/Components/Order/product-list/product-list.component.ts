@@ -1,6 +1,7 @@
 import { StaticProductsService } from './../../../Services/static-products.service';
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
 import { IProduct } from '../../../Models/iproduct';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-list',
@@ -25,7 +26,8 @@ export class ProductListComponent implements OnChanges, OnInit {
   setInfoBackgroundColor:string = "background-color: blue;";
   setWarningBackgroundColor:string = "background-color: yellow;";
 
-  constructor(private staticProductsService: StaticProductsService)
+  constructor(private staticProductsService: StaticProductsService,
+    private router: Router)
   {
     this.totalPriceChange = new EventEmitter<number>();
 
@@ -98,6 +100,11 @@ export class ProductListComponent implements OnChanges, OnInit {
   productsTrackByFun(index:number, prd:IProduct):number
   {
     return prd.id;
+  }
+
+  openProductDetails(productId: number)
+  {
+    this.router.navigate(['/Products', productId])
   }
 
   // private productsFilteration()

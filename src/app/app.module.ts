@@ -14,6 +14,7 @@ import { OrderMasterComponent } from './Components/Order/order-master/order-mast
 import { UserLoginComponent } from './Components/UserLogin/UserLogin.component';
 import { NotFoundComponent } from './Components/NotFound/NotFound.component';
 import { MainLayoutComponent } from './Components/MainLayout/MainLayout.component';
+import { ProductDetailsComponent } from './Components/Order/product-details/product-details.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { MainLayoutComponent } from './Components/MainLayout/MainLayout.componen
     OrderMasterComponent,
     UserLoginComponent,
     NotFoundComponent,
-    MainLayoutComponent
+    MainLayoutComponent,
+    ProductDetailsComponent
   ],
   imports: [
     BrowserModule,
