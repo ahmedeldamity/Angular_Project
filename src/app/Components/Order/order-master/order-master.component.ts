@@ -36,7 +36,6 @@ export class OrderMasterComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     this.clientNameInput.nativeElement.value = "Your Name Here";
     this.clientNameInput.nativeElement.style.border = "2px solid red";
-    console.log(this.ProductListComponentObj.prdList);
   }
 
   changeCategory()
@@ -47,5 +46,10 @@ export class OrderMasterComponent implements AfterViewInit {
   onTotalPriceChange(totalPrice: number)
   {
     this.receivedTotalPrice = totalPrice;
+  }
+
+  completeOrder()
+  {
+    //this.ProductListComponentObj.productList[2].quantity -= 1;
   }
 }

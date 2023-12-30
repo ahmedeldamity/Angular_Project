@@ -16,3 +16,4 @@
 </div>
 <h3>The total price is: {{receivedTotalPrice | currency: 'EUR'}}</h3>
 <h6>Today's Date: {{orderDate | date: 'longDate'}}</h6>
+<button type="button" class="btn btn-success" (click)="completeOrder()">Order</button>

@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, OnChanges, Output} from '@angular/core';
+import { StaticProductsService } from './../../../Services/static-products.service';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
 import { IProduct } from '../../../Models/iproduct';
 
 @Component({
@@ -6,9 +7,8 @@ import { IProduct } from '../../../Models/iproduct';
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css'
 })
-export class ProductListComponent implements OnChanges {
+export class ProductListComponent implements OnChanges, OnInit {
   clickMessage:any;
-  prdList:IProduct[];
   productListFilteration:IProduct[]=[];
   @Input() reseivedCategoryId:number = 0;
   @Output() totalPriceChange: EventEmitter<number>;
@@ -25,64 +25,68 @@ export class ProductListComponent implements OnChanges {
   setInfoBackgroundColor:string = "background-color: blue;";
   setWarningBackgroundColor:string = "background-color: yellow;";
 
-  constructor()
+  constructor(private staticProductsService: StaticProductsService)
   {
     this.totalPriceChange = new EventEmitter<number>();
 
-    this.prdList = [
-      {
-        id:100,
-        name:'LenovoThinkpad Laptop',
-        price:100000,
-        quantity:1,
-        imageURL:'https://fakeimg.pl/120x100/ff0000/000',
-        categoryID:1
-      },
-      {
-        id:200,
-        name:'Apple MacBook Laptop',
-        price:200550,
-        quantity:0,
-        imageURL:'https://fakeimg.pl/120x100/ff0000/000',
-        categoryID:1
-      },
-      {
-        id:300,
-        name:'Lenovo Tab 2',
-        price:3000200,
-        quantity:10,
-        imageURL:'https://fakeimg.pl/120x100/ff0000/000',
-        categoryID:2
-      },
-      {
-        id:400,
-        name:'Sumsung Tab',
-        price:400860,
-        quantity:2,
-        imageURL:'https://fakeimg.pl/120x100/ff0000/000',
-        categoryID:2
-      },
-      {
-        id:500,
-        name:'Sumsung Note 10',
-        price:5000.999,
-        quantity:0,
-        imageURL:'https://fakeimg.pl/120x100/ff0000/000',
-        categoryID:3
-      },
-      {
-        id:600,
-        name:'Sumsung S22 Utlra',
-        price:600.12,
-        quantity:1,
-        imageURL:'https://fakeimg.pl/120x100/ff0000/000',
-        categoryID:3
-      },
-    ];
+    // this.prdList = [
+    //   {
+    //     id:100,
+    //     name:'LenovoThinkpad Laptop',
+    //     price:100000,
+    //     quantity:1,
+    //     imageURL:'https://fakeimg.pl/120x100/ff0000/000',
+    //     categoryID:1
+    //   },
+    //   {
+    //     id:200,
+    //     name:'Apple MacBook Laptop',
+    //     price:200550,
+    //     quantity:0,
+    //     imageURL:'https://fakeimg.pl/120x100/ff0000/000',
+    //     categoryID:1
+    //   },
+    //   {
+    //     id:300,
+    //     name:'Lenovo Tab 2',
+    //     price:3000200,
+    //     quantity:10,
+    //     imageURL:'https://fakeimg.pl/120x100/ff0000/000',
+    //     categoryID:2
+    //   },
+    //   {
+    //     id:400,
+    //     name:'Sumsung Tab',
+    //     price:400860,
+    //     quantity:2,
+    //     imageURL:'https://fakeimg.pl/120x100/ff0000/000',
+    //     categoryID:2
+    //   },
+    //   {
+    //     id:500,
+    //     name:'Sumsung Note 10',
+    //     price:5000.999,
+    //     quantity:0,
+    //     imageURL:'https://fakeimg.pl/120x100/ff0000/000',
+    //     categoryID:3
+    //   },
+    //   {
+    //     id:600,
+    //     name:'Sumsung S22 Utlra',
+    //     price:600.12,
+    //     quantity:1,
+    //     imageURL:'https://fakeimg.pl/120x100/ff0000/000',
+    //     categoryID:3
+    //   },
+    // ];
+
+  }
+  ngOnInit(): void {
+    this.productListFilteration = this.staticProductsService.getAllProducts();
   }
 
   ngOnChanges(): void {
-    this.productsFilteration();
+    this.productListFilteration = this.staticProductsService.getProductByCategoryId(this.reseivedCategoryId);
   }
 
   buying(prdPrice:number, itemsCount:any)
@@ -96,11 +100,11 @@ export class ProductListComponent implements OnChanges {
     return prd.id;
   }
 
-  private productsFilteration()
-  {
-    if(this.reseivedCategoryId == 0)
-      this.productListFilteration = this.prdList;
-    else
-      this.productListFilteration = this.prdList.filter(P => P.categoryID == this.reseivedCategoryId);
-  }
+  // private productsFilteration()
+  // {
+  //   if(this.reseivedCategoryId == 0)
+  //     this.productListFilteration = this.prdList;
+  //   else
+  //     this.productListFilteration = this.prdList.filter(P => P.categoryID == this.reseivedCategoryId);
+  // }
 }
